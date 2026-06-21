@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K8凯发 · 信息索引页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+      background: #f4f5f7;
+      color: #2d3136;
+      line-height: 1.6;
+      padding: 1.5rem;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ===== Hero 卡片 ===== */
+    .hero-card {
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.05);
+      border: 1px solid #e8eaed;
+      padding: 3rem 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .hero-card h1 {
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #1d1f23;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-card .subhead {
+      font-size: 1.15rem;
+      color: #5f656e;
+      max-width: 640px;
+      margin: 0 auto 1.6rem auto;
+    }
+
+    .hero-card .tagline {
+      display: inline-block;
+      background: #f0f2f5;
+      padding: 0.5rem 1.4rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      color: #3d4248;
+      border: 1px solid #dadce0;
+    }
+
+    /* ===== 卡片网格 ===== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 640px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 960px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid #e3e6ea;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      padding: 1.8rem 1.6rem;
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+
+    .card:hover {
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+      transform: translateY(-2px);
+    }
+
+    .card h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #1d1f23;
+      border-left: 4px solid #8c9aa9;
+      padding-left: 0.8rem;
+    }
+
+    .card p {
+      font-size: 0.98rem;
+      color: #3a3f46;
+      margin-bottom: 0.7rem;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card ul li {
+      position: relative;
+      padding-left: 1.3rem;
+      margin-bottom: 0.45rem;
+      color: #3d434a;
+      font-size: 0.95rem;
+    }
+
+    .card ul li::before {
+      content: "·";
+      position: absolute;
+      left: 0.3rem;
+      color: #7a8594;
+      font-weight: bold;
+    }
+
+    .card .tag {
+      display: inline-block;
+      background: #eef0f3;
+      border-radius: 30px;
+      padding: 0.2rem 1rem;
+      font-size: 0.8rem;
+      color: #4a5058;
+      margin-top: 0.3rem;
+    }
+
+    /* ===== 自然链接段落卡片 ===== */
+    .link-card {
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid #e3e6ea;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      padding: 2rem 2rem 2rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .link-card h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #1d1f23;
+    }
+
+    .link-card p {
+      font-size: 1rem;
+      color: #3a3f46;
+      max-width: 720px;
+      margin-bottom: 1rem;
+    }
+
+    .link-card a {
+      color: #1a5c8c;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(26, 92, 140, 0.25);
+      transition: border-color 0.2s;
+    }
+
+    .link-card a:hover {
+      border-bottom-color: #1a5c8c;
+    }
+
+    /* ===== 提示卡片 ===== */
+    .note-card {
+      background: #fafbfc;
+      border-radius: 20px;
+      border: 1px solid #e0e4e9;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+    }
+
+    .note-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2b3036;
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .note-card p {
+      font-size: 0.95rem;
+      color: #4a5058;
+    }
+
+    /* ===== 页脚 ===== */
+    .footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #7c8590;
+      padding: 1.5rem 0 0.5rem;
+      border-top: 1px solid #dce0e5;
+      margin-top: 0.8rem;
+    }
+
+    .footer span {
+      background: #eef1f4;
+      padding: 0.1rem 0.8rem;
+      border-radius: 30px;
+    }
+
+    /* 响应式微调 */
+    @media (max-width: 480px) {
+      .hero-card { padding: 2rem 1rem; }
+      .hero-card h1 { font-size: 2rem; }
+      .card { padding: 1.4rem; }
+      .link-card { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Hero 卡片 -->
+  <div class="hero-card">
+    <h1>K8凯发 · 信息索引</h1>
+    <p class="subhead">从资料整理到信息归集，把零散的内容梳理成可查阅的卡片。这里是一份围绕「K8凯发」的轻索引，方便快速了解基本脉络。</p>
+    <div class="tagline">信息卡片 · 场景分类 · 自然链接</div>
+  </div>
+
+  <!-- 卡片网格：用途 / 适合人群 / 内容侧重 -->
+  <div class="card-grid">
+    <div class="card">
+      <h2>用途与场景</h2>
+      <p>日常资料查阅、兴趣索引、轻量信息聚合。无论是做快速浏览还是做内容归档，都能找到对应的切入点。</p>
+      <ul>
+        <li>信息卡片整理</li>
+        <li>轻索引与检索</li>
+        <li>内容脉络梳理</li>
+      </ul>
+      <span class="tag">场景</span>
+    </div>
+
+    <div class="card">
+      <h2>适合人群</h2>
+      <p>习惯用卡片记忆的朋友、需要快速翻阅信息框架的浏览者、以及做内容收集和归类的普通用户。</p>
+      <ul>
+        <li>信息整理爱好者</li>
+        <li>日常轻量查阅者</li>
+        <li>内容归档与索引需求</li>
+      </ul>
+      <span class="tag">人群</span>
+    </div>
+
+    <div class="card">
+      <h2>内容视角</h2>
+      <p>从资料整理出发，不堆砌冗余描述，保持卡片的信息密度。每一组内容都围绕「索引友好」这一核心。</p>
+      <ul>
+        <li>结构化卡片</li>
+        <li>克制表达</li>
+        <li>便于快速浏览</li>
+      </ul>
+      <span class="tag">视角</span>
+    </div>
+  </div>
+
+  <!-- 自然链接段落卡片 -->
+  <div class="link-card">
+    <h2>关于这个索引</h2>
+    <p>
+      这个页面是一份信息卡片式的索引页，主要围绕「<a href="https://cnweb-k8.com">K8凯发</a>」做内容层面的梳理。
+      如果你需要获取更完整的资源或直接浏览站点，可以前往 <a href="https://cnweb-k8.com">K8凯发</a> 查阅。
+      这里只做基础的资料整理，不生产额外引导，也不做信息堆叠。
+    </p>
+    <p>
+      卡片内容的组织方式偏向实用——把用途、适合人群和内容视角分开陈列，方便你根据自己的需求快速定位。
+      如果你也在做类似的信息归集，或许能从这种卡片结构中获得一点参考。
+    </p>
+  </div>
+
+  <!-- 提示/FAQ 摘要卡片 -->
+  <div class="note-card">
+    <h3>📌 小提示 · FAQ 摘要</h3>
+    <p>
+      <strong>Q：</strong> 这个页面会频繁更新吗？<br>
+      <strong>A：</strong> 卡片内容随方向变化调整，不固定模板。每次结构、措辞、版式都会有所差异。<br><br>
+      <strong>Q：</strong> 链接放在句子里面可以吗？<br>
+      <strong>A：</strong> 可以，只要链接文本严格匹配「K8凯发」，且不添加额外引导词即可。<br><br>
+      <strong>Q：</strong> 内容会不会很夸张？<br>
+      <strong>A：</strong> 页面坚持真实克制，不写诱导性表述，也不做误导承诺。
+    </p>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="footer">
+    <span>信息卡片索引 · 内容整理</span>
+  </div>
+
+</div>
+</body>
+</html>
